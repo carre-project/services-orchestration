@@ -1,0 +1,30 @@
+edu:
+  image: 'carre/educational-aggregator:latest'
+  environment:
+    - VIRTUAL_HOST=edu.demo.carre-project.eu
+  restart: always
+entry:
+  image: 'carre/risk-entry-system:latest'
+  command: ['/bin/bash', './env']
+  environment:
+    - VIRTUAL_HOST=entry.demo.carre-project.eu
+    - CACHE_URL=http://cache.demo.carre-project.eu/
+  restart: always
+cache:
+  image: 'carre/cache-server:latest'
+  environment:
+    - VIRTUAL_HOST=cache.demo.carre-project.eu
+  expose:
+    - '80'
+  restart: always
+proxy:
+  image: 'eforce21/letsencrypt-nginx-proxy:latest'
+  environment:
+    - LETSENCRYPT_EMAIL=portokallidis@gmail.com
+  ports:
+    - '80:80'
+    - '443:443'
+  restart: always
+  volumes:
+    - '/var/run/docker.sock:/tmp/docker.sock:ro'
+
