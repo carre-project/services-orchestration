@@ -1,19 +1,19 @@
 edu:
   image: 'carre/educational-aggregator:latest'
   environment:
-    - VIRTUAL_HOST=edu.tina.carre-project.eu
+    - VIRTUAL_HOST=edu.t.carre-project.eu
   restart: always
 entry:
   image: 'carre/risk-entry-system:latest'
   command: ['/bin/bash', './env']
   environment:
-    - VIRTUAL_HOST=entry.tina.carre-project.eu
-    - CACHE_URL=https://cache.tina.carre-project.eu/
+    - VIRTUAL_HOST=entry.t.carre-project.eu
+    - CACHE_URL=https://cache.t.carre-project.eu/
   restart: always
 cache:
   image: 'carre/cache-server:latest'
   environment:
-    - VIRTUAL_HOST=cache.tina.carre-project.eu
+    - VIRTUAL_HOST=cache.t.carre-project.eu
   expose:
     - '80'
   restart: always
