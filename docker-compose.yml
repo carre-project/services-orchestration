@@ -1,5 +1,6 @@
 edu:
   image: 'carre/educational-aggregator:latest'
+  command: ['npm', 'start']
   environment:
     - VIRTUAL_HOST=edu.t.carre-project.eu
   restart: always
