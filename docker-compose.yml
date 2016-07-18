@@ -1,20 +1,30 @@
+vi:
+  image: 'carre/visual-interface-vm'
+  environment:
+    - VIRTUAL_HOST=visual.duth.carre-project.eu
+  restart: always
+rdfserver:
+  image: 'carre/rdf-server'
+  environment:
+    - VIRTUAL_HOST=devices.duth.carre-project.eu
+  restart: always
 edu:
   image: 'carre/educational-aggregator:latest'
   command: ['npm', 'start']
   environment:
-    - VIRTUAL_HOST=edu.t.carre-project.eu
+    - VIRTUAL_HOST=edu.duth.carre-project.eu
   restart: always
 entry:
   image: 'carre/risk-entry-system:latest'
   command: ['/bin/bash', './env']
   environment:
-    - VIRTUAL_HOST=entry.t.carre-project.eu
-    - CACHE_URL=https://cache.t.carre-project.eu/
+    - VIRTUAL_HOST=entry.duth.carre-project.eu
+    - CACHE_URL=https://cache.duth.carre-project.eu/
   restart: always
 cache:
   image: 'carre/cache-server:latest'
   environment:
-    - VIRTUAL_HOST=cache.t.carre-project.eu
+    - VIRTUAL_HOST=cache.duth.carre-project.eu
   expose:
     - '80'
   restart: always
