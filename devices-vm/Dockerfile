@@ -65,10 +65,6 @@ RUN pip install mysqlclient psycopg2 django=="$DJANGO_VERSION"
 
 
 
-# ======================== APACHE2 INSTALLATION ================================#
-RUN apt-get install -y apache2
-
-
 # ======================== CONFIGURATION ================================#
 
 # Add Virtuoso config
