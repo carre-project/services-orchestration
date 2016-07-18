@@ -19,6 +19,7 @@ edu:
   image: 'carre/educational-aggregator:latest'
   command: ['npm', 'start']
   environment:
+    - VIRTUAL_HOST=edu.duth.carre-project.eu
     - LANGUAGE=el
     - API_URL=https://devices.carre-project.eu/ws/
     - TOKEN_NAME=CARRE_USER
@@ -30,6 +31,7 @@ entry:
   image: 'carre/risk-entry-system:latest'
   command: ['/bin/bash', './env']
   environment:
+    - VIRTUAL_HOST=entry.duth.carre-project.eu
     - LANGUAGE=el
     - API_URL=https://carre.kmi.open.ac.uk/ws/
     - CACHE_URL=https://cache.duth.carre-project.eu/
@@ -40,8 +42,6 @@ cache:
   image: 'carre/cache-server:latest'
   environment:
     - VIRTUAL_HOST=cache.duth.carre-project.eu
-  expose:
-    - '80'
   restart: always
 proxy:
   image: 'eforce21/letsencrypt-nginx-proxy:latest'
