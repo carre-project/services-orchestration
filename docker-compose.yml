@@ -3,23 +3,38 @@ vi:
   environment:
     - VIRTUAL_HOST=visual.duth.carre-project.eu
   restart: always
+  ports:
+    - '3005:8080'
+    - '3006:80'
 rdfserver:
   image: 'carre/rdf-server'
   environment:
     - VIRTUAL_HOST=devices.duth.carre-project.eu
+  ports:
+    - '3010:8890'
+    - '3011:1111'
+    - '3012:80'
   restart: always
 edu:
   image: 'carre/educational-aggregator:latest'
   command: ['npm', 'start']
   environment:
-    - VIRTUAL_HOST=edu.duth.carre-project.eu
+    - LANGUAGE=el
+    - API_URL=https://devices.carre-project.eu/ws/
+    - TOKEN_NAME=CARRE_USER
+    - RDF_TOKEN=***************
+    - AUTH_URL=https://devices.carre-project.eu/devices/accounts/
+    - GRAPH_URL=carre.kmi.open.ac.uk
   restart: always
 entry:
   image: 'carre/risk-entry-system:latest'
   command: ['/bin/bash', './env']
   environment:
-    - VIRTUAL_HOST=entry.duth.carre-project.eu
+    - LANGUAGE=el
+    - API_URL=https://carre.kmi.open.ac.uk/ws/
     - CACHE_URL=https://cache.duth.carre-project.eu/
+    - AUTH_URL=https://devices.carre-project.eu/devices/accounts/
+    - GRAPH_URL=carre.kmi.open.ac.uk
   restart: always
 cache:
   image: 'carre/cache-server:latest'
