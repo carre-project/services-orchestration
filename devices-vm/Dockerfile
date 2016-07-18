@@ -66,8 +66,7 @@ RUN pip install mysqlclient psycopg2 django=="$DJANGO_VERSION"
 
 
 # ======================== APACHE2 INSTALLATION ================================#
-RUN apt-get install -y apache2 apache2-utils
-
+RUN apt-get install -y apache2
 
 
 # ======================== CONFIGURATION ================================#
@@ -88,5 +87,6 @@ VOLUME /data
 WORKDIR /data
 EXPOSE 8890
 EXPOSE 1111
+EXPOSE 80
 
 CMD ["/bin/bash", "/virtuoso.sh"]
