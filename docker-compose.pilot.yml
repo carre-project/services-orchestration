@@ -17,7 +17,7 @@ entry:
   environment:
     - LANGUAGE=el
     - API_URL=https://carre.kmi.open.ac.uk/ws/
-    - CACHE_URL:-http://cache.duth.carre-project.eu:3003/
+    - CACHE_URL=https://cache.duth.carre-project.eu/
     - AUTH_URL=https://devices.carre-project.eu/devices/accounts/
     - GRAPH_URL=carre.kmi.open.ac.uk
   ports:
