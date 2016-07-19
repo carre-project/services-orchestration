@@ -1,13 +1,13 @@
 vi:
-  image: 'carre/visual-interface-vm'
+  image: 'carre/visual-interface'
   environment:
     - VIRTUAL_HOST=visual.duth.carre-project.eu
   restart: always
   ports:
     - '3005:8080'
     - '3006:80'
-rdfserver:
-  image: 'carre/rdf-server'
+devices:
+  image: 'carre/devices-vm'
   environment:
     - VIRTUAL_HOST=devices.duth.carre-project.eu
   ports:
