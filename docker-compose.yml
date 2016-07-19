@@ -1,52 +1,60 @@
 vi:
-  image: 'carre/visual-interface'
+  image: 'carre/visual-interface:0.2'
   environment:
-    - VIRTUAL_HOST=visual.duth.carre-project.eu
+    - VIRTUAL_HOST=visual.okn.carre-project.eu
+    - LANGUAGE=el
+  volumes:
+    - '/webapps:/opt/tomcat7/webapps'
   restart: always
-  ports:
-    - '3005:8080'
-    - '3006:80'
+    
 devices:
   image: 'carre/devices-vm'
   environment:
-    - VIRTUAL_HOST=devices.duth.carre-project.eu
+    - VIRTUAL_HOST=devices.okn.carre-project.eu
+    - LANGUAGE=el
+  volumes:
+    - '/virtuoso:/data'
   ports:
     - '3010:8890'
     - '3011:1111'
     - '3012:80'
   restart: always
+  
 edu:
-  image: 'carre/educational-aggregator:latest'
+  image: 'carre/educational-aggregator:0.2'
   command: ['npm', 'start']
   environment:
-    - VIRTUAL_HOST=edu.duth.carre-project.eu
+    - VIRTUAL_HOST=edu.okn.carre-project.eu
     - LANGUAGE=el
     - API_URL=https://devices.carre-project.eu/ws/
     - TOKEN_NAME=CARRE_USER
-    - RDF_TOKEN=***************
+    - RDF_TOKEN=*
     - AUTH_URL=https://devices.carre-project.eu/devices/accounts/
     - GRAPH_URL=carre.kmi.open.ac.uk
   restart: always
+
 entry:
-  image: 'carre/risk-entry-system:latest'
+  image: 'carre/risk-entry-system:0.2'
   command: ['/bin/bash', './env']
   environment:
-    - VIRTUAL_HOST=entry.duth.carre-project.eu
+    - VIRTUAL_HOST=entry.okn.carre-project.eu
     - LANGUAGE=el
     - API_URL=https://carre.kmi.open.ac.uk/ws/
-    - CACHE_URL=https://cache.duth.carre-project.eu/
+    - CACHE_URL=https://cache.okn.carre-project.eu/
     - AUTH_URL=https://devices.carre-project.eu/devices/accounts/
     - GRAPH_URL=carre.kmi.open.ac.uk
   restart: always
+
 cache:
-  image: 'carre/cache-server:latest'
+  image: 'carre/cache-server:0.2'
   environment:
-    - VIRTUAL_HOST=cache.duth.carre-project.eu
+    - VIRTUAL_HOST=cache.okn.carre-project.eu
   restart: always
+
 proxy:
-  image: 'eforce21/letsencrypt-nginx-proxy:latest'
+  image: 'eforce21/letsencrypt-nginx-proxy:1.2.0'
   environment:
-    - LETSENCRYPT_EMAIL=portokallidis@gmail.com
+    - LETSENCRYPT_EMAIL=projectcarre@gmail.com
   ports:
     - '80:80'
     - '443:443'
