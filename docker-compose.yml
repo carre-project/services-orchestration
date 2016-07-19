@@ -4,8 +4,10 @@ vi:
     - VIRTUAL_HOST=visual.okn.carre-project.eu
     - LANGUAGE=el
   volumes:
-    - '/webapps:/opt/tomcat7/webapps'
+    - '~/webapps:/opt/tomcat7/webapps'
   restart: always
+  command: ['bash', '/usr/local/bin/run.sh']
+  privileged: true
     
 devices:
   image: 'carre/devices-vm'
@@ -13,11 +15,11 @@ devices:
     - VIRTUAL_HOST=devices.okn.carre-project.eu
     - LANGUAGE=el
   volumes:
-    - '/virtuoso:/data'
+    - '~/virtuoso:/data'
   ports:
-    - '3010:8890'
-    - '3011:1111'
-    - '3012:80'
+    - '4010:8890'
+    - '4011:1111'
+    - '4012:80'
   restart: always
   
 edu:
@@ -28,7 +30,7 @@ edu:
     - LANGUAGE=el
     - API_URL=https://devices.carre-project.eu/ws/
     - TOKEN_NAME=CARRE_USER
-    - RDF_TOKEN=*
+    - RDF_TOKEN=fsdfsdakdsjfsdlfksdjflsdkj
     - AUTH_URL=https://devices.carre-project.eu/devices/accounts/
     - GRAPH_URL=carre.kmi.open.ac.uk
   restart: always
