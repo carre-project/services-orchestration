@@ -52,14 +52,12 @@ cache:
   restart: always
 
 phrproxy:
-  image: 'sameersbn/squid:3.3.8-16'
+  image: 'nporto/forward-proxy-nginx:0.1'
   environment:
     - VIRTUAL_HOST=phr.duth.carre-project.eu
-    - http_proxy=http://phr.carre-project.eu:80
+    - SERVER_ADDR=phr.carre-project.eu
+    - SERVER_PORT=80
   restart: always
-  # volumes:
-  #   - '/srv/docker/squid/cache:/var/spool/squid3'
-  
 
 proxy:
   image: 'eforce21/letsencrypt-nginx-proxy:1.2.0'
