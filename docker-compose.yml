@@ -52,7 +52,7 @@ cache:
   restart: always
 
 phrproxy:
-  image: 'nporto/forward-proxy-nginx:0.1'
+  image: 'nporto/forward-proxy-nginx:latest'
   environment:
     - VIRTUAL_HOST=phr.duth.carre-project.eu
     - SERVER_ADDR=phr.carre-project.eu
