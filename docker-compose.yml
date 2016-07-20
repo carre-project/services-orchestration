@@ -1,5 +1,5 @@
 vi:
-  image: 'carre/visual-interface:0.4'
+  image: 'carre/visual-interface:latest'
   environment:
     - VIRTUAL_HOST=visual.duth.carre-project.eu
     - LANGUAGE=el
