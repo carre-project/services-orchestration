@@ -32,6 +32,8 @@ edu:
     - AUTH_URL=https://devices.carre-project.eu/devices/accounts/
     - GRAPH_URL=carre.kmi.open.ac.uk
   restart: always
+  ports:
+    - '3001:80'
 
 entry:
   image: 'carre/risk-entry-system:0.2'
@@ -43,13 +45,17 @@ entry:
     - CACHE_URL=https://cache.duth.carre-project.eu/
     - AUTH_URL=https://devices.carre-project.eu/devices/accounts/
     - GRAPH_URL=carre.kmi.open.ac.uk
-  restart: always
+  restart: always  
+  ports:
+    - '3002:80'
 
 cache:
   image: 'carre/cache-server:0.2'
   environment:
     - VIRTUAL_HOST=cache.duth.carre-project.eu
-  restart: always
+  restart: always  
+  ports:
+    - '3003:80'
 
 # phrproxy:
 #   image: 'nporto/forward-proxy-nginx:latest'
