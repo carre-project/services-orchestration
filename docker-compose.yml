@@ -1,30 +1,7 @@
-# vi:
-#   image: 'carre/visual-interface:latest'
-#   environment:
-#     - VIRTUAL_HOST=visual.duth.carre-project.eu
-#     - LANGUAGE=el
-#   volumes:
-#     - '~/webapps:/opt/tomcat7/webapps'
-#   restart: always
-#   privileged: true
-    
-# devices:
-#   image: 'carre/devices-vm'
-#   environment:
-#     - VIRTUAL_HOST=devices.duth.carre-project.eu
-#     - LANGUAGE=el
-#   volumes:
-#     - '~/virtuoso:/data'
-#   ports:
-#     - '8890:8890'
-#     - '1111:1111'
-#   restart: always
-  
 edu:
   image: 'carre/educational-aggregator:0.2'
   command: ['npm', 'start']
   environment:
-    - VIRTUAL_HOST=edu.duth.carre-project.eu
     - LANGUAGE=el
     - API_URL=https://devices.carre-project.eu/ws/
     - TOKEN_NAME=CARRE_USER
@@ -39,7 +16,6 @@ entry:
   image: 'carre/risk-entry-system:0.2'
   command: ['/bin/bash', './env']
   environment:
-    - VIRTUAL_HOST=entry.duth.carre-project.eu
     - LANGUAGE=el
     - API_URL=https://carre.kmi.open.ac.uk/ws/
     - CACHE_URL=https://cache.duth.carre-project.eu/
@@ -51,28 +27,6 @@ entry:
 
 cache:
   image: 'carre/cache-server:0.2'
-  environment:
-    - VIRTUAL_HOST=cache.duth.carre-project.eu
   restart: always  
   ports:
     - '3003:80'
-
-# phrproxy:
-#   image: 'nporto/forward-proxy-nginx:latest'
-#   environment:
-#     - VIRTUAL_HOST=phr.duth.carre-project.eu
-#     - SERVER_ADDR=phr.carre-project.eu
-#     - SERVER_PORT=80
-#   restart: always
-
-# proxy:
-#   image: 'eforce21/letsencrypt-nginx-proxy:1.2.0'
-#   environment:
-#     - LETSENCRYPT_EMAIL=projectcarre@gmail.com
-#   ports:
-#     - '80:80'
-#     - '443:443'
-#   restart: always
-#   volumes:
-#     - '/var/run/docker.sock:/tmp/docker.sock:ro'
-
