@@ -1,32 +1,32 @@
 edu:
-  image: 'carre/educational-aggregator:0.2'
+  image: 'carre/educational-aggregator:latest'
   command: ['npm', 'start']
   environment:
     - LANGUAGE=el
-    - API_URL=https://devices.carre-project.eu/ws/
+    - API_URL=https://devices.duth.carre-project.eu/ws/
     - TOKEN_NAME=CARRE_USER
-    - RDF_TOKEN=xxxxxxxxxxxxxxxxxxxx
-    - AUTH_URL=https://devices.carre-project.eu/devices/accounts/
+    - RDF_TOKEN=eb4b45ad94090ffe8749ed0fc578159cefd1b894
+    - AUTH_URL=https://devices.duth.carre-project.eu/devices/accounts/
     - GRAPH_URL=carre.kmi.open.ac.uk
   restart: always
   ports:
     - '3001:80'
 
 entry:
-  image: 'carre/risk-entry-system:0.2'
+  image: 'carre/risk-entry-system:latest'
   command: ['/bin/bash', './env']
   environment:
     - LANGUAGE=el
-    - API_URL=https://carre.kmi.open.ac.uk/ws/
-    - CACHE_URL=https://cache.duth.carre-project.eu/
-    - AUTH_URL=https://devices.carre-project.eu/devices/accounts/
+    - API_URL=https://devices.duth.carre-project.eu/ws/
+    - CACHE_URL=NO_CACHE
+    - AUTH_URL=https://devices.duth.carre-project.eu/devices/accounts/
     - GRAPH_URL=carre.kmi.open.ac.uk
   restart: always  
   ports:
     - '3002:80'
 
-cache:
-  image: 'carre/cache-server:0.2'
-  restart: always  
-  ports:
-    - '3003:80'
+#cache:
+#  image: 'carre/cache-server:0.2'
+#  restart: always  
+#  ports:
+#    - '3003:80'
